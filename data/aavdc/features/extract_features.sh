@@ -15,7 +15,7 @@ NUM_SHARDS=1
 DEVICE=cuda:0
 OUTPUT_DIR=./pkl/${RELEASED_CHECKPOINT}_features/stride_${STRIDE}/
 
-%mkdir -p {OUTPUT_DIR}
+mkdir -p $OUTPUT_DIR
 
 python extract_features.py \
 --data-path $DATA_PATH \
