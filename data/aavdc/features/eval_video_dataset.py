@@ -46,7 +46,6 @@ class EvalVideoDataset(Dataset):
         # Holds clip features for a given video until all clips are processed and the
         # full video features are ready to be saved to disk
         self.saved_features = {}
-        self.saved_results = {}
 
     def __len__(self):
         return len(self.clip_metadata_df)
@@ -89,10 +88,9 @@ class EvalVideoDataset(Dataset):
 
             if is_last_clip:
                 # dump results in disk at self.output_dir and then remove from self.saved_results
-                output_filename = os.path.join(self.output_dir, os.path.basename(filename).split('.')[0] + '_output.pkl')
+                output_filename = os.path.join(self.output_dir, os.path.basename(filename).split('.')[0] + '.pkl')
                 for label in label_columns:
                     self.saved_results[filename][label] = np.stack(self.saved_results[filename][label])
-                # np.save(output_filename, self.saved_results[filename])
                 with open(output_filename, 'wb') as fobj:
                     pkl.dump(self.saved_results[filename], fobj)
                 del self.saved_results[filename]
@@ -108,13 +106,11 @@ class EvalVideoDataset(Dataset):
 
             if is_last_clip:
                 # dump features to disk at self.output_dir and remove them from self.saved_features
-                output_filename = os.path.join(self.output_dir, os.path.basename(filename).split('.')[0] + '.npy')
+                output_filename = os.path.join(self.output_dir, os.path.basename(filename).split('.')[0] + '.pkl')
                 self.saved_features[filename] = np.stack(self.saved_features[filename])
-                np.save(output_filename, self.saved_features[filename])
-                # with open(output_filename, 'wb') as fobj:
-                #     pkl.dump(self.saved_features[filename], fobj)
+                with open(output_filename, 'wb') as fobj:
+                    pkl.dump(self.saved_features[filename], fobj)
                 del self.saved_features[filename]
-
 
     @staticmethod
     def _append_root_dir_to_filenames_and_check_files_exist(df, root_dir):

@@ -51,11 +51,8 @@ def evaluate(model, data_loader, device):
     with torch.no_grad():
         for sample in metric_logger.log_every(data_loader, 10, header, device=device):
             clip = sample['clip'].to(device, non_blocking=True)
-            logits, features = model(clip, return_features=True)
+            _, features = model(clip, return_features=True)
             data_loader.dataset.save_features(features, sample)
-            # print(len(logits))
-            # print(logits[0].shape, logits[1].shape)
-            data_loader.dataset.save_output(logits, sample, ["action-label"])
 
 
 def main(args):
@@ -86,7 +83,7 @@ def main(args):
 
     metadata_df = metadata_df.iloc[start_idx:end_idx].reset_index()
     metadata_df['is-computed-already'] = metadata_df['filename'].map(lambda f:
-        os.path.exists(os.path.join(args.output_dir, os.path.basename(f).split('.')[0] + '.npy')))
+        os.path.exists(os.path.join(args.output_dir, os.path.basename(f).split('.')[0] + '.pkl')))
     metadata_df = metadata_df[metadata_df['is-computed-already']==False].reset_index(drop=True)
     print(f'Number of videos to process after excluding the ones already computed on disk: {len(metadata_df)}')
 

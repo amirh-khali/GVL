@@ -13,7 +13,7 @@ STRIDE=16
 SHARD_ID=0
 NUM_SHARDS=1
 DEVICE=cuda:0
-OUTPUT_DIR=./pkl/${RELEASED_CHECKPOINT}_features/stride_${STRIDE}/
+OUTPUT_DIR=./pkls/
 
 mkdir -p $OUTPUT_DIR
 
