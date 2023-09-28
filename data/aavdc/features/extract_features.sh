@@ -18,8 +18,8 @@ OUTPUT_DIR=./pkl/${RELEASED_CHECKPOINT}_features/stride_${STRIDE}/
 mkdir -p $OUTPUT_DIR
 
 python extract_features.py \
---data-path $DATA_PATH \
---metadata-csv-filename $METADATA_CSV_FILENAME \
+--data-path $VIDEOS_PATH \
+--metadata-csv-filename $METADATA_PATH \
 --released-checkpoint $RELEASED_CHECKPOINT \
 --stride $STRIDE \
 --shard-id $SHARD_ID \
