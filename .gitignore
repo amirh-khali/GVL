@@ -4,6 +4,10 @@ save*
 *.hdf5
 *.npy
 *.h5
+data/aavdc/features/videos
+data/aavdc/features/pkl
+data/aavdc/features/metadata.csv
+data/aavdc/features/how2100m_tsp_features.h5
 data/anet/features/c3d
 data/anet/features/tsp
 data/anet/features/resnet_bn
