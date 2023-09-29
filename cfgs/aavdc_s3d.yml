@@ -1,53 +1,59 @@
-id: anet_c3d_msvg_dvc
+id: aavdc_s3d
 
-visual_feature_type: c3d
-visual_feature_folder: 'data/anet/features/c3d'
-feature_dim: 500
+dataset: aavdc
+visual_feature_type: ['s3d']
+visual_feature_folder: ['/content/drive/MyDrive/University/01022-Final-Project/videos/howto100m_s3d_features/']
+feature_dim: 1024
 invalid_video_json: []
-train_caption_file: data/anet/captiondata/train_modified.json
-train_proposal_file: data/generated_proposals/dbg_trainval_top100.json
-eval_proposal_file: data/generated_proposals/dbg_trainval_top100.json
-gt_file_for_eval: ['data/anet/captiondata/val_1.json', 'data/anet/captiondata/val_2.json']
-gt_file_for_para_eval: ['data/anet/captiondata/para/anet_entities_val_1_para.json', 'data/anet/captiondata/para/anet_entities_val_2_para.json']
+train_caption_file: data/aavdc/captiondata/aavdc_train.json
+val_caption_file: data/aavdc/captiondata/aavdc_val.json
+gt_file_for_auc: data/aavdc/captiondata/aavdc_val.json
+gt_file_for_eval: ['data/aavdc/captiondata/aavdc_val.json']
+gt_file_for_para_eval: ['data/aavdc/captiondata/para/para_aavdc_val.json']
+eval_gt_file_for_grounding: data/aavdc/captiondata/grounding/aavdc_val_for_grounding.json
+dict_file: data/aavdc/vocabulary_aavdc.json
+vocab_size: 27895
+
+huggingface_cache_dir: .cache
 train_proposal_type: gt
 gt_proposal_sample_num: 30
 sample_method: nearest
-dict_file: data/anet/vocabulary_activitynet_thres2.json
-vocab_size: 8517
+frame_embedding_num: 200
 
+# model configs
+num_queries: 100
+batch_size: 8
+eval_batch_size: 8
 lr: 0.00005
 learning_rate_decay_start: 8
 learning_rate_decay_every: 3
 learning_rate_decay_rate: 0.5
 weight_decay: 0.0001
 epoch: 25
-eval_batch_size: 16
-min_epoch_when_save: 2
-train_use_amp: False
-eval_use_amp: False
-# model configs
-num_queries: 30
 save_dir: /content/drive/MyDrive/University/01022-Final-Project/save
-
-
 # grounding settings
 eval_enable_grounding: True
-eval_gt_file_for_grounding: data/anet/captiondata/grounding/val1_for_grounding.json
-
 # Text encoder
 word_context_modeling_type: attention_pool
 text_encoder_learning_strategy: frozen
+text_encoder_lr: 0.00001
+text_encoder_lr_decay_start: 8
+text_encoder_lr_decay_every: 3
+text_encoder_lr_decay_rate: 0.5
 enable_layer_diff_text_feature: True
 # Text Context Modeling
 enable_word_context_modeling: True
 enable_sentence_context_modeling: True
 enable_sentence_pos_embedding: True
 sentence_modeling_layer_num: 1
+
 # contrastive loss
+pretrained_language_model: roberta-base
 enable_contrastive: True
 enable_cross_video_cl: True
 cl_schedule_time: [0, 2]
 cl_schedule_val: [0, 0.1]
+contrastive_loss_coef: 0.1
 contrastive_loss_temperature: 0.1
 contrastive_hidden_size: 128
 eval_set_cost_class: 0
