@@ -14,7 +14,7 @@ train_proposal_type: gt
 gt_proposal_sample_num: 30
 sample_method: nearest
 dict_file: data/aavdc/vocabulary_aavdc.json
-vocab_size: 27895
+vocab_size: 26297
 
 lr: 0.00005
 learning_rate_decay_start: 8
