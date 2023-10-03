@@ -1,27 +1,26 @@
-id: aavdc_tsp
+id: anet_tsp_msvg_dvc_pc
 
-dataset: aavdc
 visual_feature_type: ['tsp']
-visual_feature_folder: ['data/aavdc/features/tsp']
-feature_dim: 512
+visual_feature_folder: ['data/anet/features/tsp']
 invalid_video_json: []
-train_caption_file: data/aavdc/captiondata/aavdc_train.json
-val_caption_file: data/aavdc/captiondata/aavdc_val.json
-gt_file_for_auc: data/aavdc/captiondata/aavdc_val.json
-gt_file_for_eval: ['data/aavdc/captiondata/aavdc_val.json']
-gt_file_for_para_eval: ['data/aavdc/captiondata/para/para_aavdc_val.json']
+feature_dim: 512
+train_caption_file: data/anet/captiondata/train_modified.json
+train_proposal_file: data/generated_proposals/dbg_trainval_top100.json
+eval_proposal_file: data/generated_proposals/dbg_trainval_top100.json
+gt_file_for_eval: ['data/anet/captiondata/val_1.json', 'data/anet/captiondata/val_2.json']
+gt_file_for_para_eval: ['data/anet/captiondata/para/anet_entities_val_1_para.json', 'data/anet/captiondata/para/anet_entities_val_2_para.json']
 train_proposal_type: gt
 gt_proposal_sample_num: 30
 sample_method: nearest
 dict_file: data/aavdc/vocabulary_aavdc.json
 vocab_size: 27548
 
-lr: 0.001
+lr: 0.00005
 learning_rate_decay_start: 8
 learning_rate_decay_every: 3
 learning_rate_decay_rate: 0.5
 weight_decay: 0.0001
-epoch: 30
+epoch: 20
 batch_size: 16
 eval_batch_size: 16
 min_epoch_when_save: 2
@@ -34,7 +33,7 @@ save_dir: save
 
 # grounding settings
 eval_enable_grounding: True
-eval_gt_file_for_grounding: data/aavdc/captiondata/grounding/aavdc_val_for_grounding.json
+eval_gt_file_for_grounding: data/anet/captiondata/grounding/val1_for_grounding.json
 
 # Text encoder
 word_context_modeling_type: attention_pool

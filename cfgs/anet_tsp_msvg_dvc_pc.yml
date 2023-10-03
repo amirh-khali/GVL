@@ -28,7 +28,7 @@ train_use_amp: False
 eval_use_amp: False
 # model configs
 num_queries: 30
-save_dir: /content/drive/MyDrive/University/01022-Final-Project/save
+save_dir: save
 
 
 # grounding settings
