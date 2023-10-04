@@ -1,62 +1,63 @@
-id: aavdc_tsp
+id: yc2_tsn_dvc
 
-dataset: aavdc
+dataset: youcook2
 visual_feature_type: ['tsp']
-visual_feature_folder: ['data/aavdc/features/tsp']
+visual_feature_folder: ['data/yc2_tsp/features/tsp']
 feature_dim: 512
 invalid_video_json: []
-train_caption_file: data/aavdc/captiondata/aavdc_train.json
-val_caption_file: data/aavdc/captiondata/aavdc_val.json
-gt_file_for_auc: data/aavdc/captiondata/aavdc_val.json
-gt_file_for_eval: ['data/aavdc/captiondata/aavdc_val.json']
-gt_file_for_para_eval: ['data/aavdc/captiondata/para/para_aavdc_val.json']
+train_caption_file: data/yc2_tsp/captiondata/yc2_train.json
+val_caption_file: data/yc2_tsp/captiondata/yc2_val.json
+gt_file_for_auc: data/yc2_tsp/captiondata/yc2_val.json
+gt_file_for_eval: ['data/yc2_tsp/captiondata/yc2_val.json']
+gt_file_for_para_eval: ['data/yc2_tsp/captiondata/para/para_yc2_val.json']
+eval_gt_file_for_grounding: data/yc2_tsp/captiondata/grounding/yc2_val_for_grounding.json
+dict_file: data/aavdc/vocabulary_aavdc_yc2.json
+vocab_size: 26408
+
+huggingface_cache_dir: .cache
+save_dir: save
 train_proposal_type: gt
 gt_proposal_sample_num: 30
 sample_method: nearest
-dict_file: data/aavdc/vocabulary_aavdc.json
-vocab_size: 27548
-#dict_file: data/aavdc/vocabulary_aavdc_yc2.json
-#vocab_size: 26408
+frame_embedding_num: 200
 
-lr: 0.001
+# model configs
+num_queries: 100
+batch_size: 16
+eval_batch_size: 16
+lr: 0.00005
 learning_rate_decay_start: 8
 learning_rate_decay_every: 3
 learning_rate_decay_rate: 0.5
 weight_decay: 0.0001
-epoch: 30
-batch_size: 16
-eval_batch_size: 16
-min_epoch_when_save: 2
-train_use_amp: False
-eval_use_amp: False
-# model configs
-num_queries: 30
-save_dir: save
-
-
+epoch: 20
 # grounding settings
 eval_enable_grounding: True
-eval_gt_file_for_grounding: data/aavdc/captiondata/grounding/aavdc_val_for_grounding.json
-
 # Text encoder
 word_context_modeling_type: attention_pool
 text_encoder_learning_strategy: frozen
+text_encoder_lr: 0.00001
+text_encoder_lr_decay_start: 8
+text_encoder_lr_decay_every: 3
+text_encoder_lr_decay_rate: 0.5
 enable_layer_diff_text_feature: True
 # Text Context Modeling
 enable_word_context_modeling: True
 enable_sentence_context_modeling: True
 enable_sentence_pos_embedding: True
 sentence_modeling_layer_num: 1
+
 # contrastive loss
+pretrained_language_model: roberta-base
 enable_contrastive: True
 enable_cross_video_cl: True
 cl_schedule_time: [0, 2]
 cl_schedule_val: [0, 0.1]
+contrastive_loss_coef: 0.1
 contrastive_loss_temperature: 0.1
 contrastive_hidden_size: 128
-
-
 eval_set_cost_class: 0
+
 dec_layers: 2
 enc_layers: 2
 transformer_ff_dim: 512
