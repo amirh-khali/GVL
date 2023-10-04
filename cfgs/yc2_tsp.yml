@@ -22,7 +22,7 @@ sample_method: nearest
 frame_embedding_num: 200
 
 # model configs
-num_queries: 100
+num_queries: 30
 batch_size: 16
 eval_batch_size: 16
 lr: 0.00005
