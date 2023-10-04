@@ -21,13 +21,11 @@ for vid_file, split in zip(vid_file_lst, split_lst):
     with open(vid_file) as f:
         lines = f.readlines()
         for line in lines:
-            rcp_type,vid_name = line.replace('\n','').split('/')
-            if not os.path.isdir(os.path.join(dataset_root, split, rcp_type)):
-                os.mkdir(os.path.join(dataset_root, split, rcp_type))
+            rcp_type, vid_name = line.replace('\n','').split('/')
 
             # download the video
             vid_url = 'www.youtube.com/watch?v='+vid_name
-            vid_prefix = os.path.join(dataset_root, split, rcp_type, vid_name) 
+            vid_prefix = os.path.join(dataset_root, split, vid_name)
             os.system(' '.join(("youtube-dl -o", vid_prefix, vid_url)))
 
             # check if the video is downloaded
