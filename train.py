@@ -208,6 +208,7 @@ def train(opt):
 
     epoch = saved_info[opt.start_from_mode[:4]].get('epoch', 0)
     iteration = saved_info[opt.start_from_mode[:4]].get('iter', 0)
+    best_epoch = saved_info['best'].get('epoch', 0)
     best_val_score = saved_info[opt.start_from_mode[:4]].get('best_val_score', -1e5)
     best_dvc_score = saved_info[opt.start_from_mode[:4]].get('best_dvc_score', -1e5)
     best_pc_score = saved_info[opt.start_from_mode[:4]].get('best_pc_score', -1e5)
@@ -470,7 +471,7 @@ def train(opt):
             model.eval()
             result_json_path = os.path.join(save_folder, 'prediction',
                                          '_num{}_epoch{}.json'.format(len(val_dataset), epoch))
-            eval_score, eval_loss = evaluate(model, criterion, constrastive_criterion ,postprocessors, val_loader, result_json_path, logger=logger, alpha=opt.ec_alpha, device=opt.device, debug=opt.debug, tokenizer=tokenizer, dvc_eval_version=opt.eval_tool_version)
+            eval_score, eval_loss = evaluate(model, criterion, constrastive_criterion, postprocessors, val_loader, result_json_path, logger=logger, alpha=opt.ec_alpha, device=opt.device, debug=opt.debug, tokenizer=tokenizer, dvc_eval_version=opt.eval_tool_version)
 
             current_grounding_score = np.array(eval_score['grounding_R@1IOU0.7']).mean() + np.array(eval_score['grounding_R@1IOU0.3']).mean() + np.array(eval_score['grounding_R@1IOU0.5']).mean() + np.array(eval_score['grounding_R@1IOU0.1']).mean()
             current_localization_score = 2./(1./eval_score['Precision'] + 1./eval_score['Recall'])

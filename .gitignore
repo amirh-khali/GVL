@@ -8,6 +8,12 @@ data/aavdc/features/videos
 data/aavdc/features/pkl
 data/aavdc/features/metadata.csv
 data/aavdc/features/how2100m_tsp_features.h5
+data/aavdc/features/*.zip
+data/yc2_tsp/features/videos
+data/yc2_tsp/features/pkl
+data/yc2_tsp/features/metadata.csv
+data/yc2_tsp/features/yc2_tsp_features.h5
+data/yc2_tsp/features/*.zip
 data/anet/features/c3d
 data/anet/features/tsp
 data/anet/features/resnet_bn
@@ -18,7 +24,7 @@ data/yt180/annotations*
 data/yt180/features
 data/htm_aa/annotations*
 data/htm_aa/features
-data/anet_tacos_charades_yc2/features   
+data/anet_tacos_charades_yc2/features
 *.tmp
 
 .vscode/

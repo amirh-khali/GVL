@@ -13,25 +13,25 @@ gt_file_for_para_eval: ['data/aavdc/captiondata/para/para_aavdc_val.json']
 train_proposal_type: gt
 gt_proposal_sample_num: 30
 sample_method: nearest
-dict_file: data/aavdc/vocabulary_aavdc.json
-vocab_size: 27548
-#dict_file: data/aavdc/vocabulary_aavdc_yc2.json
-#vocab_size: 26408
+#dict_file: data/aavdc/vocabulary_aavdc.json
+#vocab_size: 27548
+dict_file: data/aavdc/vocabulary_aavdc_yc2.json
+vocab_size: 26408
 
 lr: 0.001
 learning_rate_decay_start: 8
 learning_rate_decay_every: 3
 learning_rate_decay_rate: 0.5
 weight_decay: 0.0001
-epoch: 30
-batch_size: 16
-eval_batch_size: 16
+epoch: 20
+batch_size: 8
+eval_batch_size: 8
 min_epoch_when_save: 2
 train_use_amp: False
 eval_use_amp: False
 # model configs
 num_queries: 30
-save_dir: save
+save_dir: /content/drive/MyDrive/University/01022-Final-Project/save
 
 
 # grounding settings
